@@ -4,6 +4,11 @@ import sys, xlrd
 
 
 
+def repretty(L):
+	''' Print each row on a separate line and indent it with one tab. '''
+	return '(\n{},\n)'.format(',\n'.join([ '\t{!r}'.format(row) for row in L ]))
+
+
 def main(src, sheet = 0):
 	wb = xlrd.open_workbook(src)
 	sheet = wb.sheet_by_index(sheet)
@@ -15,7 +20,7 @@ def main(src, sheet = 0):
 		row = dict(zip(labels, values))
 		rows.append(row)
 
-	print(tuple(rows))
+	print(repretty(rows))
 
 
 if __name__ == '__main__':
