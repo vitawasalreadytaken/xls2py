@@ -17,7 +17,7 @@ def main(argv = sys.argv):
 
 	sheetIndex = int(sys.argv[2]) if len(sys.argv) == 3 else 0
 
-	rows = fn(sys.argv[1], sheetIndex)
+	labels, rows = fn(sys.argv[1], sheetIndex)
 	print(repretty(rows))
 
 
@@ -43,7 +43,7 @@ def _read(fileName, sheetIndex, constructor):
 		row = constructor(labels, values)
 		rows.append(row)
 
-	return rows
+	return (labels, rows)
 
 
 
